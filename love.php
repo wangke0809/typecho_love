@@ -7,7 +7,8 @@
 ?>
 <?php 
 $categoryPosts = null;
-$this->widget('Widget_Archive@love', 'pageSize=100&type=category', 'mid=1')->to($categoryPosts);
+$mid = $this->fields->mid;
+$this->widget('Widget_Archive@my', 'pageSize=1000&type=category', 'mid='.$mid)->to($categoryPosts);
 $t1=strtotime (date("y-m-d h:i:s"));
 $t2=strtotime ("2017-7-15 00:00:00");
 $loveDays=ceil(($t1-$t2)/86400)-1;
