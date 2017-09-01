@@ -7,16 +7,14 @@
 ?>
 <?php 
 $categoryPosts = null;
-$this->widget('Widget_Archive@love', 'type=category','mid=1')->to($categoryPosts); 
-//var_dump($categoryPosts);
+$this->widget('Widget_Archive@love', 'pageSize=100&type=category', 'mid=1')->to($categoryPosts);
 $t1=strtotime (date("y-m-d h:i:s"));
 $t2=strtotime ("2017-7-15 00:00:00");
 $loveDays=ceil(($t1-$t2)/86400)-1;
 ?>
-<!DOCTYPE html><html class=''>
-<head>
-<meta charset='UTF-8'>
-<meta name="robots" content="noindex">
+<div class="header-bg"></div>
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php $this->need('header.php'); ?>
 <link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
 <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css'>
 <style class="cp-pen-styles">.timeline {
@@ -146,47 +144,41 @@ $loveDays=ceil(($t1-$t2)/86400)-1;
   margin-top: 5px;
 }
 .header-bg {
-    background-color: #FFF;
-   background-size: cover;
+  background-color: #FFF;
+  background-size: cover;
   background-position: center center;
   width: 100%;
-    height: 360px;
-    background-image: url(http://winke-uploads.stor.sinaapp.com/picture/bg.png);
+  height: 360px;
+  background-image: url(http://winke-uploads.stor.sinaapp.com/picture/bg.png);
   }
-
-</style></head><body>
-<div class="header-bg"></div>
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<?php $this->need('header.php'); ?>
+body img {
+  width:100%;
+}
+</style></head>
 <div class="container">
     <div class="page-header">
-        <h1 id="timeline" style="text-align:center">与你相遇 <?php echo $loveDays; ?> 天，与你相爱 <?php echo $loveDays; ?> 天</h1>
+        <h3 id="timeline" style="text-align:center">与你相遇 <?php echo $loveDays; ?> 天，与你相爱 <?php echo $loveDays; ?> 天</h3>
     </div>
     <ul class="timeline">
-        <li>
-          <div class="timeline-badge danger"><i class="glyphicon glyphicon-heart"></i></div>
+        <?php 
+         $count = 0;
+         while($categoryPosts->next()){
+             $count++;
+        ?>
+        <li class="<?php if($count%2==0) echo "timeline-inverted"; ?>">
+          <div class="timeline-badge danger"><i class="glyphicon glyphicon-heart" style="margin-top:15px;"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+              <h4 class="timeline-title"><?php $categoryPosts->title(); ?></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i><?php $categoryPosts->date(); ?></small></p>
             </div>
             <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+              <?php $categoryPosts->content('More'); ?>
             </div>
           </div>
         </li>
-        <li class="timeline-inverted">
-          <div class="timeline-badge danger"><i class="glyphicon glyphicon-heart"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-            </div>
-          </div>
-        </li>
+        <?php } ?>
     </ul>
 </div>
+<?php $this->need('footer.php'); ?>
 <!-- <script src="http://libs.baidu.com/jquery/2.1.3/jquery.min.js"></script> -->
-</body></html>
