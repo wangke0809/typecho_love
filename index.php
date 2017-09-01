@@ -1,9 +1,9 @@
 <?php
 /**
- * 这是 Typecho 0.9 系统的一套默认皮肤
+ * 这是基于Typecho 0.9 系统的默认皮肤的一套皮肤
  * 
- * @package Typecho Replica Theme 
- * @author Typecho Team
+ * @package Typecho Replica Love Theme 
+ * @author Typecho Team & pizi
  * @version 1.2
  * @link http://typecho.org
  */
