@@ -8,6 +8,7 @@
 <?php 
 $categoryPosts = null;
 $mid = $this->fields->mid;
+$bgPic = $this->fields->pic;
 $this->widget('Widget_Archive@my', 'pageSize=1000&type=category', 'mid='.$mid)->to($categoryPosts);
 $t1=strtotime (date("y-m-d h:i:s"));
 $t2=strtotime ("2017-7-15 00:00:00");
@@ -18,7 +19,8 @@ $loveDays=ceil(($t1-$t2)/86400)-1;
 <?php $this->need('header.php'); ?>
 <link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
 <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css'>
-<style class="cp-pen-styles">.timeline {
+<style class="cp-pen-styles">
+.timeline {
   list-style: none;
   padding: 20px 0 20px;
   position: relative;
@@ -150,12 +152,12 @@ $loveDays=ceil(($t1-$t2)/86400)-1;
   background-position: center center;
   width: 100%;
   height: 360px;
-  background-image: url(http://winke-uploads.stor.sinaapp.com/picture/bg.png);
+  background-image: url(<?php echo $bgPic; ?>);
   }
 body img {
   width:100%;
 }
-</style></head>
+</style>
 <div class="container">
     <div class="page-header">
         <h3 id="timeline" style="text-align:center">与你相遇 <?php echo $loveDays; ?> 天，与你相爱 <?php echo $loveDays; ?> 天</h3>
