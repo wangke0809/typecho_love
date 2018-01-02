@@ -2,6 +2,8 @@
 
 演示:relaxed: http://wozhendehaoaini.cn
 
+## 使用
+在你正在使用的模版目录内 `git clone git@github.com:wangke0809/typecho_love.git .`
 
 ## passwd.php
 
