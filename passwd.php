@@ -12,7 +12,7 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <h1 class="post-title" itemprop="name headline"><a itemprop="url" href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h1>
         <div class="post-content" itemprop="articleBody">
-            <?php if ($_POST['p'] == $this->fields->passwd || $_SESSION['template_p'] == true){  $_SESSION['template_p'] = true; $this->content();} else { ?>
+            <?php if ($_POST['p'] == $this->fields->passwd || $_SESSION['template_p'] == $this->fields->passwd){  $_SESSION['template_p'] = $this->fields->passwd; $this->content();} else { ?>
             <form class="protected" action="" method="post"><p class="word">请输入密码访问</p><p><input name="p" class="text" type="password">
             <input class="submit" type="submit" value="提交"></p></form>
             <?php } ?>
